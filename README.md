@@ -10,6 +10,6 @@ haremos que identifique nuestra mano.
 <img src="/imagenes/ia.png">
 
 
-cabe destacar que no soy el autor de este proyecto, pero dejo el enlace al video en el que 
-me base:
-    * <link href="https://www.youtube.com/watch?v=YLrjXRTDq6I&t=174s">PROYECTO ORIGINAL</link>
+cabe destacar que no soy el autor de este proyecto, pero dejo el enlace al video en el
+que me base:
+    * <a href="https://www.youtube.com/watch?v=YLrjXRTDq6I&t=174s">PROYECTO ORIGINAL</a>
