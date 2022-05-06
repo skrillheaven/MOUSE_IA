@@ -16,3 +16,15 @@ class detectormanos():
         self.dibujo = mp.solutions.drawing_utils
         self.tip =[4,8,12,16,20]
 
+
+    def encontrarmanos(sefl,frame, dibujar = True):
+        imgcolor = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+        self.resultados = self.manos.process(imgcolor)
+
+
+        if sefl.resultados.multi_hand_landmarks:
+            for mano in self.resultados.multi_hand_landmarks:
+                if dibujar:
+                    sefl.dibujo.draw_landmarks(frame,mano, self.mpmanos.HAND_CONNECTIONS)
+
+        return frame

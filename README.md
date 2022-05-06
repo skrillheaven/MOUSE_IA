@@ -15,7 +15,7 @@ Enlace al archivo que detecta la mano:
 
 Enlace al archivo que realiza la funcion del mouse:
 
-<a href="MouseVirtual.py">Mouse Virtuañ</a>
+<a href="MouseVirtual.py">Mouse Virtual</a>
 
 Cabe destacar que no soy el autor de este proyecto, pero dejo el enlace al video en el
 que me base:
