@@ -56,3 +56,20 @@ class detectormanos():
             if dibujar:
                 cv2.rectangle(frame,(xmin-20,ymin-20),(xmax+20, ymax+20),(0,255,0),2)
         return self.lista,bbox
+
+
+
+def dedosarriba(self):
+    dedos =[]
+    if self.lista[self.tip[0]][1] > self.lista[self.tip[0]-1][1]:
+        dedos.append(1)
+    else:
+        dedos.append(0)
+
+    for id in range (1,5):
+        if self.lista[self.tip[id]][2] > self.lista[self.tip[0]-2][2]:
+            dedos.append(1)
+        else:
+            dedos.append(0)
+
+    return dedos
