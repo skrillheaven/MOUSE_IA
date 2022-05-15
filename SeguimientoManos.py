@@ -1,4 +1,6 @@
 import math
+from re import X
+import re
 import cv2
 import mediapipe
 import time
@@ -46,3 +48,11 @@ class detectormanos():
                 self.lista.append([id,cx,cy])
                 if dibujar:
                     cv2.circle(frame,(cx,cy),5,(0,0,0),cv2.FILLED) 
+
+
+            xmin,xmax =min(xlista),max(xlista)
+            ymin, ymax =min(ylista), max(ylista)
+            bbox = xmin,ymin,xmax,xmin
+            if dibujar:
+                cv2.rectangle(frame,(xmin-20,ymin-20),(xmax+20, ymax+20),(0,255,0),2)
+        return self.lista,bbox
