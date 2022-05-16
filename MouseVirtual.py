@@ -1,4 +1,5 @@
 import cv2
+from matplotlib.transforms import Bbox
 import numpy as np
 import SeguimientoManos as sm
 import autopy
@@ -18,6 +19,9 @@ cap.set(4,altocam)
 
 detector =sm.detectormanos(maxManos=1) #una sola mano
 
-
+while True:
+    ret,frame =cap.read()
+    frame = detector.encontrarmanos(frame)
+    lista,bbox = detector.encontrarposicion(frame)
 
 
