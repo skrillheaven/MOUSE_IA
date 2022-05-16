@@ -4,6 +4,7 @@ from pickle import TRUE
 from re import X
 import re
 import cv2
+from matplotlib.transforms import Bbox
 import mediapipe
 import time
 
@@ -96,3 +97,10 @@ def main():
 
     cap = cv2.VideoCapture(0) 
     detector = detectormanos()
+
+    while True:
+        ret, frame = cap.read()
+        frame =detector.encontrarmanos(frame)
+        lista,bbox = detector.encontrarposicion(frame)
+        if len(lista) !=0:
+            print (lista[4])
