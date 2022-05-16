@@ -28,4 +28,8 @@ while True:
     if len(lista) !=0:
         x1,y1 =lista[8][1:]
         x2,y2 = lista[12][1:]
+        
+    dedos=detector.dedosarriba()
+    cv2.rectangle(frame,(cuadro,cuadro),(anchocam - cuadro,altocam-cuadro),(0,0,0),2)
 
+    
