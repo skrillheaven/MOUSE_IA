@@ -1,4 +1,6 @@
 import math
+from operator import length_hint
+from pickle import TRUE
 from re import X
 import re
 import cv2
@@ -24,7 +26,7 @@ class detectormanos():
         self.resultados = self.manos.process(imgcolor)
 
 
-        if sefl.resultados.multi_hand_landmarks:
+        if self.resultados.multi_hand_landmarks:
             for mano in self.resultados.multi_hand_landmarks:
                 if dibujar:
                     sefl.dibujo.draw_landmarks(frame,mano, self.mpmanos.HAND_CONNECTIONS)
@@ -59,17 +61,33 @@ class detectormanos():
 
 
 
-def dedosarriba(self):
-    dedos =[]
-    if self.lista[self.tip[0]][1] > self.lista[self.tip[0]-1][1]:
-        dedos.append(1)
-    else:
-        dedos.append(0)
-
-    for id in range (1,5):
-        if self.lista[self.tip[id]][2] > self.lista[self.tip[0]-2][2]:
+    def dedosarriba(self):
+        dedos =[]
+        if self.lista[self.tip[0]][1] > self.lista[self.tip[0]-1][1]:
             dedos.append(1)
         else:
             dedos.append(0)
 
-    return dedos
+        for id in range (1,5):
+            if self.lista[self.tip[id]][2] > self.lista[self.tip[0]-2][2]:
+                dedos.append(1)
+            else:
+                dedos.append(0)
+
+        return dedos
+
+    def distancia(self,p1,p2,frame,dibujar = TRUE, r=15,t=3):
+        x1,y1 = self.lista[p1][1:]
+        x2,y2 = self.lista[p2][1:]
+        cx,cy = (x1 + x2) // 2,(y1+y2) // 2
+
+        if dibujar:
+            cv2.line(frame,(x1,y1),(x2,y2),(0,0,255),t)
+            cv2.circle(frame,(x1,y1),r,(0,0,255),cv2.FILLED)
+            cv2.circle(frame,(x2,y2),r,(0,0,255),cv2.FILLED)
+            cv2.circle(frame,(cx,cy),r,(0,0,255),cv2.FILLED)
+        length = math.hypot(x2-x1,y2-y1)
+
+        return length, frame,[x1,y1,x2,y2,cx,cy]
+         
+    
