@@ -95,3 +95,4 @@ def main():
     ctiempo =0 
 
     cap = cv2.VideoCapture(0) 
+    detector = detectormanos()
