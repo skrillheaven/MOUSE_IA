@@ -12,3 +12,8 @@ cubix,cubiy =0,0
 
 
 
+cap =cv2.VideoCapture(0)
+cap.set(3,anchocam)
+cap.set(4,altocam)
+
+
