@@ -90,4 +90,6 @@ class detectormanos():
 
         return length, frame,[x1,y1,x2,y2,cx,cy]
          
-    
+def main():
+    ptiempo=0
+    ctiempo =0 
