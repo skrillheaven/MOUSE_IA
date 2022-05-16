@@ -104,3 +104,17 @@ def main():
         lista,bbox = detector.encontrarposicion(frame)
         if len(lista) !=0:
             print (lista[4])
+
+        ctiempo = time.time()
+        fps =1/(ctiempo -ptiempo)
+        ptiempo = ctiempo
+
+        cv2.putText(frame,str(int(fps)),(10,70),cv2.FONT_HERSHEY_PLAIN,3(255,0,255),3 )
+
+        cv2.imshow("Manos",frame)
+        k= cv2.waitKey(1)
+
+        if k==27:
+            break
+    cap.release()
+    cv2.destroyAllWindows()
