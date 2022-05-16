@@ -44,6 +44,11 @@ while True:
         cubiy = pubiy +(y3-pubiy)/sua
 
 
+        autopy.mouse.move(anchopanta-cubix,cubiy)
+        cv2.circle(frame,(x1,y1),10,(0,0,0),cv2.FILLED)
+        pubix,pubiy = cubix,cubiy
+
+
     if dedos [1] == 1 and dedos [2] == 1:
 
         longitud, frame,linea = detector.distancia(8,12,frame)
@@ -51,5 +56,10 @@ while True:
         if longitud < 30:
             cv2.circle(frame,(linea[4],linea[5]),10,(0,255,0),cv2.FILLED)
 
-            
+            autopy.mouse.click()
+
+cv2.imshow("Mouse",frame)
+k = cv2.waitKey(1)
+
+
 
