@@ -32,4 +32,7 @@ while True:
     dedos=detector.dedosarriba()
     cv2.rectangle(frame,(cuadro,cuadro),(anchocam - cuadro,altocam-cuadro),(0,0,0),2)
 
-    
+    if dedos[1]==[1] and dedos [2] ==0:
+
+        x3= np.interp(x1,(cuadro,anchocam-cuadro),(0,anchopanta))
+        y3 =np.interp(y1,(cuadro,altocam-cuadro),(0,altopanta))
