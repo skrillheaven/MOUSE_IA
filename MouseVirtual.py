@@ -1,4 +1,6 @@
+from pickletools import long1
 import cv2
+from cv2 import line
 from matplotlib.transforms import Bbox
 import numpy as np
 import SeguimientoManos as sm
@@ -39,5 +41,15 @@ while True:
 
 
         cubix = pubix +(x3-pubix) /sua
-        cubiy = pubiy + (y3-pubiy)/sua
-        
+        cubiy = pubiy +(y3-pubiy)/sua
+
+
+    if dedos [1] == 1 and dedos [2] == 1:
+
+        longitud, frame,linea = detector.distancia(8,12,frame)
+        print(longitud)
+        if longitud < 30:
+            cv2.circle(frame,(linea[4],linea[5]),10,(0,255,0),cv2.FILLED)
+
+            
+
