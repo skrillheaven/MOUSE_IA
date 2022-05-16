@@ -36,3 +36,8 @@ while True:
 
         x3= np.interp(x1,(cuadro,anchocam-cuadro),(0,anchopanta))
         y3 =np.interp(y1,(cuadro,altocam-cuadro),(0,altopanta))
+
+
+        cubix = pubix +(x3-pubix) /sua
+        cubiy = pubiy + (y3-pubiy)/sua
+        
