@@ -1,20 +1,17 @@
 import math
-from operator import length_hint
-from pickle import TRUE
-from re import X
-import re
 import cv2
-from matplotlib.transforms import Bbox
 import mediapipe as mp
 import time
 
+from numpy import True_
+
 
 class detectormanos():
-    def __init__(self,mode=False, maxManos =1, modelComplexity =1, Confdeteccion =0.5,Confsegui=0.5):
+    def __init__(self,mode=False, maxManos =2, Confdeteccion =0.5,modelComplexity =1,Confsegui=0.5):
         self.mode =mode
         self.maxManos =maxManos
-        self.modelComplexity= modelComplexity
         self.Confdeteccion = Confdeteccion
+        self.modelComplexity= modelComplexity
         self.Confsegui = Confsegui
 
         self.mpmanos =mp.solutions.hands
@@ -37,7 +34,7 @@ class detectormanos():
 
 
 
-    def encontrarposicion (self,frame, ManoNum=0,dibujar =True):
+    def encontrarposicion(self,frame, ManoNum=0,dibujar =True):
         xlista =[]
         ylista =[]
         bbox = []
@@ -56,7 +53,7 @@ class detectormanos():
 
             xmin,xmax =min(xlista),max(xlista)
             ymin, ymax =min(ylista), max(ylista)
-            bbox = xmin,ymin,xmax,xmin
+            bbox = xmin,ymin,xmax,ymax
             if dibujar:
                 cv2.rectangle(frame,(xmin-20,ymin-20),(xmax+20, ymax+20),(0,255,0),2)
         return self.lista,bbox
@@ -78,7 +75,7 @@ class detectormanos():
 
         return dedos
 
-    def distancia(self,p1,p2,frame,dibujar = TRUE, r=15,t=3):
+    def distancia(self,p1,p2,frame,dibujar = True_, r=15,t=3):
         x1,y1 = self.lista[p1][1:]
         x2,y2 = self.lista[p2][1:]
         cx,cy = (x1 + x2) // 2,(y1+y2) // 2
