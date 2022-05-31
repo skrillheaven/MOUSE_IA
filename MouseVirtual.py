@@ -1,4 +1,6 @@
 from pickletools import long1
+from tkinter import Button
+from turtle import right
 import cv2
 from cv2 import line
 from matplotlib.transforms import Bbox
@@ -7,7 +9,7 @@ import SeguimientoManos as sm
 import autopy 
 
 
-anchocam, altocam=880,500
+anchocam, altocam=660,480
 cuadro =100
 anchopanta,altopanta =autopy.screen.size()
 sua=5
@@ -31,6 +33,8 @@ while True:
     if len(lista) !=0:
         x1,y1 =lista[8][1:]
         x2,y2 = lista[12][1:]
+        
+       
         
         dedos=detector.dedosarriba()
         cv2.rectangle(frame,(cuadro,cuadro),(anchocam - cuadro,altocam-cuadro),(0,0,0),2)
@@ -58,6 +62,9 @@ while True:
                 cv2.circle(frame,(linea[4],linea[5]),10,(0,255,0),cv2.FILLED)
 
                 autopy.mouse.click()
+
+       
+        
 
     cv2.imshow("Mouse",frame)
     k = cv2.waitKey(1)
