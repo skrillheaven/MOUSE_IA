@@ -5,24 +5,25 @@ from re import X
 import re
 import cv2
 from matplotlib.transforms import Bbox
-import mediapipe
+import mediapipe as mp
 import time
 
 
 class detectormanos():
-    def __init__(self,mode=False, maxManos =2, Confdeteccion =0.5,Confsegui=0.5):
+    def __init__(self,mode=False, maxManos =1, modelComplexity =1, Confdeteccion =0.5,Confsegui=0.5):
         self.mode =mode
         self.maxManos =maxManos
+        self.modelComplexity= modelComplexity
         self.Confdeteccion = Confdeteccion
         self.Confsegui = Confsegui
 
         self.mpmanos =mp.solutions.hands
-        self.manos = self.mpmanos.Hands(self.mode,self.maxManos,self.Confdeteccion,self.Confsegui)
+        self.manos = self.mpmanos.Hands(self.mode,self.maxManos,self.modelComplexity ,self.Confdeteccion,self.Confsegui)
         self.dibujo = mp.solutions.drawing_utils
         self.tip =[4,8,12,16,20]
 
 
-    def encontrarmanos(sefl,frame, dibujar = True):
+    def encontrarmanos(self,frame, dibujar = True):
         imgcolor = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
         self.resultados = self.manos.process(imgcolor)
 
@@ -30,7 +31,7 @@ class detectormanos():
         if self.resultados.multi_hand_landmarks:
             for mano in self.resultados.multi_hand_landmarks:
                 if dibujar:
-                    sefl.dibujo.draw_landmarks(frame,mano, self.mpmanos.HAND_CONNECTIONS)
+                    self.dibujo.draw_landmarks(frame,mano, self.mpmanos.HAND_CONNECTIONS)
 
         return frame
 
@@ -41,7 +42,7 @@ class detectormanos():
         ylista =[]
         bbox = []
         self.lista = []
-        if self.resultadoss.multi_hand_landmarks:
+        if self.resultados.multi_hand_landmarks:
             miMano = self.resultados.multi_hand_landmarks[ManoNum]
             for id, lm in enumerate (miMano.landmark):
                 alto,ancho,c= frame.shape 
@@ -109,7 +110,7 @@ def main():
         fps =1/(ctiempo -ptiempo)
         ptiempo = ctiempo
 
-        cv2.putText(frame,str(int(fps)),(10,70),cv2.FONT_HERSHEY_PLAIN,3(255,0,255),3 )
+        cv2.putText(frame,str(int(fps)),(10,70),cv2.FONT_HERSHEY_PLAIN,3,(255,0,255),3 )
 
         cv2.imshow("Manos",frame)
         k= cv2.waitKey(1)
@@ -121,3 +122,6 @@ def main():
 
 if __name__=="__main__":
     main()
+
+
+# https://stackoverflow.com/questions/69686420/typeerror-create-int-incompatible-function-arguments resolver problema
