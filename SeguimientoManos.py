@@ -71,7 +71,7 @@ class detectormanos():
             dedos.append(0)
 
         for id in range (1,5):
-            if self.lista[self.tip[id]][2] > self.lista[self.tip[0]-2][2]:
+            if self.lista[self.tip[id]][2] < self.lista[self.tip[id]-2][2]:
                 dedos.append(1)
             else:
                 dedos.append(0)
@@ -107,7 +107,7 @@ def main():
             print (lista[4])
 
         ctiempo = time.time()
-        fps =1/(ctiempo -ptiempo)
+        fps =1/(ctiempo - ptiempo)
         ptiempo = ctiempo
 
         cv2.putText(frame,str(int(fps)),(10,70),cv2.FONT_HERSHEY_PLAIN,3,(255,0,255),3 )
