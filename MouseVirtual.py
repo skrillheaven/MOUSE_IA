@@ -4,9 +4,10 @@ from cv2 import line
 from matplotlib.transforms import Bbox
 import numpy as np
 import SeguimientoManos as sm
-import autopy
+import autopy 
 
-anchocam, altocam=640,480
+
+anchocam, altocam=880,500
 cuadro =100
 anchopanta,altopanta =autopy.screen.size()
 sua=5
@@ -34,7 +35,7 @@ while True:
         dedos=detector.dedosarriba()
         cv2.rectangle(frame,(cuadro,cuadro),(anchocam - cuadro,altocam-cuadro),(0,0,0),2)
 
-        if dedos[1]==[1] and dedos [2] ==0:
+        if (dedos[1]== 1 and dedos [2] == 0) or (dedos [1] == 1 and dedos [2] == 1):
 
             x3= np.interp(x1,(cuadro,anchocam-cuadro),(0,anchopanta))
             y3 =np.interp(y1,(cuadro,altocam-cuadro),(0,altopanta))
